@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from './cart.service';
 import { ProductService } from './product.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,19 +8,24 @@ import { ProductService } from './product.service';
 })
 export class AppComponent implements OnInit {
   products: any;
-  constructor(private productService: ProductService) {}
+  categories: any;
+  cartItemCount: any;
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
   ngOnInit() {
-    this.getProducts();
+    this.getCategories();
+    this.cartService.cartItems.subscribe((cartItems) => {
+      this.cartItemCount = cartItems.length;
+      console.log(this.cartItemCount);
+    });
   }
-
-  getProducts() {
-    this.products = this.productService.getProducts().subscribe({
+  getCategories() {
+    this.categories = this.productService.getCategories().subscribe({
       next: (res) => {
-        this.products = res;
-        console.log(this.products, 'PRODUCTS');
-        // this.images = this.images.filter((image: any) => {
-        //   return image.images && image.images[0].type !== 'video/mp4';
-        // });
+        this.categories = res;
+        console.log(this.categories, 'Categories');
       },
       error: (err: any) => console.log(err),
     });

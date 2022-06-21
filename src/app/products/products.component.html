@@ -1,0 +1,41 @@
+<div class="container" *ngIf="!loading">
+  <div class="category-section">
+    <div class="description">
+      <h1 *ngIf="!category">Welcome</h1>
+      <h1 *ngIf="category">{{ category | titlecase }}</h1>
+      <p *ngIf="!category">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </p>
+    </div>
+  </div>
+  <div class="products-section">
+    <div class="product-card" *ngFor="let product of products">
+      <div class="image-container">
+        <img
+          [src]="product.image"
+          alt="product.title"
+          [routerLink]="['/product', product.id]"
+        />
+      </div>
+      <h4 class="product-title">{{ product.title }}</h4>
+      <h3 class="product-price">${{ product.price }}</h3>
+      <!-- <button class="button cart-button" (click)="addToCart(product)">
+        <span class="material-symbols-outlined md-48 cart-icon">
+          shopping_cart
+        </span>
+      </button> -->
+    </div>
+  </div>
+</div>
+<div class="loading-container" *ngIf="loading">
+  <h4>why so serious ?</h4>
+  <div class="lds-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>

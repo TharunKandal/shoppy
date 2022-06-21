@@ -1,80 +1,67 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
+@use "./../styles.scss";
+@import "./breakpoints.scss";
 
-body {
-  background: #272727;
-  font-family: "Montserrat", sans-serif;
+.shoppy-logo {
+  padding: 0px 20px;
+  height: 40px;
+  @include media("<=tablet") {
+    height: 3vh;
+  }
 }
-
+.menuIcon {
+  display: none;
+  margin-left: 5vw;
+  @include media("<=tablet") {
+    display: block;
+  }
+}
+.content {
+  padding-top: 80px;
+}
 .navMenu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.navMenu a {
-  color: #f6f4e6;
-  text-decoration: none;
-  font-size: 1.2em;
-  text-transform: uppercase;
-  font-weight: 500;
-  display: inline-block;
-  width: 80px;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
-.navMenu a:hover {
-  color: #fddb3a;
-}
-
-.navMenu .dot {
-  width: 6px;
-  height: 6px;
-  background: #fddb3a;
-  border-radius: 50%;
-  opacity: 0;
-  -webkit-transform: translateX(30px);
-  transform: translateX(30px);
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
-.navMenu a:nth-child(1):hover ~ .dot {
-  -webkit-transform: translateX(30px);
-  transform: translateX(30px);
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  opacity: 1;
-}
-
-.navMenu a:nth-child(2):hover ~ .dot {
-  -webkit-transform: translateX(110px);
-  transform: translateX(110px);
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  opacity: 1;
-}
-
-.navMenu a:nth-child(3):hover ~ .dot {
-  -webkit-transform: translateX(200px);
-  transform: translateX(200px);
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  opacity: 1;
-}
-
-.navMenu a:nth-child(4):hover ~ .dot {
-  -webkit-transform: translateX(285px);
-  transform: translateX(285px);
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  opacity: 1;
+  width: 100vw;
+  height: 80px;
+  text-align: center;
+  background-color: white;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+  a {
+    position: relative;
+    color: rgba(0, 0, 0, 0.692);
+    text-decoration: none;
+    font-size: styles.$linksize;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: inline-block;
+    width: fit-content;
+    padding: 10px 20px;
+    margin: 0px 10px;
+  }
+  a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: styles.$primary-color;
+    left: 0;
+    bottom: -0;
+    transition: 0.3s;
+  }
+  a:hover:after {
+    width: 100%;
+  }
+  .navLinks {
+    display: flex;
+    align-items: end;
+    gap: 20;
+    @include media("<=tablet") {
+      display: none;
+    }
+  }
+  .navIcons {
+    margin-right: 5vw;
+  }
 }

@@ -1,0 +1,49 @@
+<div class="container" *ngIf="!loading">
+  <div class="product-image">
+    <img [src]="product.image" alt="product.title" />
+  </div>
+  <div class="product-details">
+    <span class="product-title"
+      ><h1>{{ product.title }}</h1>
+      <!-- <p>- {{ product.category | titlecase }}</p> -->
+    </span>
+    <div class="rating" [style.width.px]="120">
+      <div [style.width.%]="100 - 0.25 * product.rating">
+        <span class="material-symbols-outlined md-48"> star </span>
+        <span class="material-symbols-outlined md-48"> star </span>
+        <span class="material-symbols-outlined md-48"> star </span>
+        <span class="material-symbols-outlined md-48"> star </span>
+        <span class="material-symbols-outlined md-48"> star </span>
+      </div>
+    </div>
+    <h2 class="price">$ {{ product.price }}</h2>
+    <div class="count-container">
+      <button class="button" (click)="increment()">+</button>
+      <input class="count" [value]="count" />
+      <button class="button" (click)="decrement()">-</button>
+      <button class="button cart-button">
+        <span class="material-symbols-outlined md-48 cart-icon">
+          shopping_cart
+        </span>
+      </button>
+
+      <button class="button checkout-button" [routerLink]="['/cart']">
+        Checkout
+        <span class="material-symbols-outlined md-48 checkout-icon">
+          arrow_forward
+        </span>
+      </button>
+    </div>
+    <h3 [style.margin.px]="10">Description</h3>
+    <p [style.margin.px]="10">{{ product.description }}</p>
+  </div>
+</div>
+<div class="loading-container" *ngIf="loading">
+  <h4>why so serious ?</h4>
+  <div class="lds-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>

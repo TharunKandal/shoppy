@@ -8,6 +8,12 @@ import { HttpClient } from '@angular/common/http';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
+  getProduct(productId: string): Observable<any> {
+    return this.http.get(`https://fakestoreapi.com/products/${productId}`).pipe(
+      tap(),
+      catchError(async (err) => console.log(err))
+    );
+  }
   getProducts(): Observable<any> {
     return this.http.get('https://fakestoreapi.com/products').pipe(
       tap(),
@@ -21,15 +27,15 @@ export class ProductService {
       catchError(async (err) => console.log(err))
     );
   }
-  getCategories(id: string): Observable<any> {
+  getCategories(): Observable<any> {
     return this.http.get('https://fakestoreapi.com/products/categories').pipe(
       tap(),
       catchError(async (err) => console.log(err))
     );
   }
-  getProductsOfCategory(id: string): Observable<any> {
+  getProductsOfCategory(category: string): Observable<any> {
     return this.http
-      .get('https://fakestoreapi.com/products/category/jewelery')
+      .get(`https://fakestoreapi.com/products/category/${category}`)
       .pipe(
         tap(),
         catchError(async (err) => console.log(err))
