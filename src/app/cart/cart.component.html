@@ -35,7 +35,7 @@
     <div class="billing-details">
       <div>
         Subtotal
-        <p>${{ subTotal }}</p>
+        <p>${{ subTotal | currency: "4.2" }}</p>
       </div>
       <div>
         Shipping Charges
@@ -47,7 +47,7 @@
           Grand Total
           <p>(Prices include GST)</p>
         </h2>
-        {{ subTotal + (subTotal === 0 ? 0 : 20) | currency: "4.2" }}
+        ${{ subTotal + (subTotal === 0 ? 0 : 20) | currency: "4.2" }}
       </div>
       <button class="button checkout-button">Checkout</button>
     </div>

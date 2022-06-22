@@ -17,6 +17,13 @@
   justify-content: center;
   align-items: center;
 }
+.similar-loading-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .product-image {
   display: flex;
@@ -58,6 +65,11 @@
   .price {
     padding: 20px 0px;
     color: darkgreen;
+  }
+
+  .description {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -132,7 +144,7 @@
   white-space: nowrap;
   padding: 5px 70px 5px 20px;
   background: transparent;
-  height: 25vh;
+  height: 30vh;
 }
 .scroll-container {
   display: inline-flex;
@@ -141,7 +153,7 @@
     display: flex;
     justify-content: start;
     background-color: styles.$card-background;
-    height: 25vh;
+    height: 100%;
     width: 200px;
     box-shadow: styles.$card-shadow;
     margin-right: 10px;

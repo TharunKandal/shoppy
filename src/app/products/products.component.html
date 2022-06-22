@@ -21,7 +21,7 @@
         />
       </div>
       <h4 class="product-title">{{ product.title }}</h4>
-      <h3 class="product-price">${{ product.price }}</h3>
+      <h3 class="product-price">${{ product.price | currency: "4.2" }}</h3>
       <!-- <button class="button cart-button" (click)="addToCart(product)">
         <span class="material-symbols-outlined md-48 cart-icon">
           shopping_cart

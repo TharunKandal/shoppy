@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
+import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from '../cart.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -14,6 +14,7 @@ export class ProductDetailsComponent implements OnInit {
   product: any;
   count: any = 1;
   similarProducts: any = [];
+  similarsLoading: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -46,10 +47,11 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getSimilarproducts(category: string) {
+    this.similarsLoading = true;
     this.productService.getProductsOfCategory(category).subscribe({
       next: (res) => {
         this.similarProducts = res;
-        console.log(this.similarProducts);
+        this.similarsLoading = false;
       },
       error: (err: any) => console.log(err),
     });
