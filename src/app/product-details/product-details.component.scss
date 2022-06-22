@@ -44,22 +44,21 @@
   .product-title {
     display: flex;
     align-items: center;
-    p {
-      margin-left: 20px;
+    h1 {
+      font-weight: 400;
     }
   }
   .rating {
     padding: 20px 0px;
+    .material-symbols-outlined {
+      color: styles.$primary-color;
+    }
   }
 
   .price {
     padding: 20px 0px;
     color: darkgreen;
   }
-}
-
-.material-symbols-outlined {
-  color: styles.$primary-color;
 }
 
 .button {
@@ -122,5 +121,39 @@
   color: white;
   span {
     margin-left: 10px;
+  }
+}
+.checkout-button:hover {
+  background-color: white;
+  color: black;
+}
+.similar-products {
+  overflow: auto;
+  white-space: nowrap;
+  padding: 5px 70px 5px 20px;
+  background: transparent;
+  height: 25vh;
+}
+.scroll-container {
+  display: inline-flex;
+  height: 100%;
+  .product-card {
+    display: flex;
+    justify-content: start;
+    background-color: styles.$card-background;
+    height: 25vh;
+    width: 200px;
+    box-shadow: styles.$card-shadow;
+    margin-right: 10px;
+    .product-card-image {
+      height: 100%;
+      width: 100%;
+      padding: 10px;
+      img {
+        height: 80%;
+        width: 100%;
+        object-fit: contain;
+      }
+    }
   }
 }

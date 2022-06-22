@@ -50,7 +50,7 @@
   width: 400px;
   padding: 10px;
   margin-bottom: 20px;
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  box-shadow: styles.$card-shadow;
 
   .product-title {
     font-weight: 500;
@@ -65,7 +65,7 @@
 .image-container {
   height: 70%;
   img {
-    height: 60%;
+    height: 80%;
     max-width: 350px;
     object-fit: contain;
     &:hover {

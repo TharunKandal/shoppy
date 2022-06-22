@@ -9,24 +9,40 @@ export class CartService {
   cartItems = new BehaviorSubject<any>([]);
   constructor() {}
 
-  // get CartItems() {
-  //   return this.cartItems.asObservable();
-  // }
-
-  // set CartItems(product: any) {
-  //   this.cart.push(...product);
-  //   this.cartItems.next(this.cart);
-  // }
-
   addItem(product: any) {
     this.cart.push(product);
     this.cartItems.next(this.cart);
   }
 
-  removeItem(product: any) {
-    this.cart.map((item: any, index: any) => {
-      item.id === product.id ? this.cart.splice(index, 1) : '';
+  addQuantityAndTotal(cartItems: any) {
+    let cartlist = [];
+    cartlist = cartItems.map((item: any) => {
+      let count = 0;
+      cartItems.map((product: any) => {
+        if (product.id == item.id) {
+          count = count + 1;
+        }
+      });
+      return Object.assign({ ...item, quantity: count });
     });
+    cartlist = [
+      ...new Map(cartlist.map((item: any) => [item['id'], item])).values(),
+    ];
+    cartlist = cartlist.map((item: any) => {
+      return Object.assign({ ...item, total: item.quantity * item.price });
+    });
+    this.cartItems.next(cartlist);
+  }
+
+  removeItem(product: any) {
+    console.log(this.cart);
+    this.cart.map((item: any, index: any) => {
+      if (item.id === product.id) {
+        console.log(index);
+        this.cart.splice(index, 1);
+      }
+    });
+    this.cartItems.next(this.cart);
   }
 
   clearCart() {
@@ -39,6 +55,5 @@ export class CartService {
       total += item.price;
     });
     return total;
-    console.log(total);
   }
 }

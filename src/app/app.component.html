@@ -16,9 +16,14 @@
       >
     </div>
     <div class="navIcons">
-      <span class="material-symbols-outlined md-48" [routerLink]="['/cart']">
+      <span
+        class="material-symbols-outlined md-48 cart-icon"
+        [routerLink]="['/cart']"
+      >
         shopping_cart
-        <span class="count-badge">{{ cartItemCount }}</span>
+        <span *ngIf="cartItemCount > 0" class="count-badge">{{
+          cartItemCount
+        }}</span>
       </span>
     </div>
   </nav>

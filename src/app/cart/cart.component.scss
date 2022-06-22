@@ -10,10 +10,143 @@
   gap: 20px;
 }
 
-.loading-container {
+.Empty-cart {
   height: 70vh;
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.cart-section {
+  background-color: styles.$content-background;
+  padding: 20px;
+  width: 60%;
+  height: 100vh;
+  overflow-y: scroll;
+  .product-card {
+    display: flex;
+    justify-content: start;
+    background-color: styles.$card-background;
+    height: 300px;
+    box-shadow: styles.$card-shadow;
+    margin-bottom: 10px;
+    .product-card-image {
+      height: 100%;
+      width: 40%;
+      padding: 10px;
+      img {
+        height: 80%;
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+    .product-card-details {
+      height: 100%;
+      width: 40%;
+      padding: 20px;
+
+      .product-title {
+        display: flex;
+        align-items: center;
+        font-weight: 400;
+        p {
+          margin-left: 20px;
+        }
+      }
+      .rating {
+        padding: 20px 0px;
+        .material-symbols-outlined {
+          color: styles.$primary-color;
+        }
+      }
+
+      .price {
+        // padding: 20px 0px;
+        color: darkgreen;
+      }
+      .details {
+        padding: 10px 0px;
+        color: grey;
+      }
+    }
+    .product-actions {
+      display: flex;
+      justify-content: end;
+      width: 20%;
+      padding: 20px;
+      float: right;
+    }
+  }
+}
+.button {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.checkout-section {
+  background-color: styles.$content-background;
+  padding: 20px 10px;
+  width: 40%;
+  height: 500px;
+  .apply-promo {
+    padding: 20px;
+    background-color: styles.$card-background;
+    h4 {
+      margin-bottom: 10px;
+    }
+    .count {
+      width: 70%;
+      border: none;
+      color: black;
+      padding: 16px 0px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      border: 2px solid black;
+      cursor: pointer;
+    }
+  }
+  .billing-details {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    hr {
+      margin: 20px 0px;
+    }
+    div {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-weight: 500;
+      margin: 10px 0px;
+      p {
+        float: right;
+      }
+      h2 {
+        p {
+          margin-left: 20px;
+          color: grey;
+          font-size: small;
+          font-weight: 400;
+        }
+      }
+    }
+    .checkout-button {
+      width: 100%;
+    }
+  }
 }

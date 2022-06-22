@@ -63,5 +63,19 @@
   }
   .navIcons {
     margin-right: 5vw;
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+    }
   }
+}
+.count-badge {
+  padding: 7px;
+  background-color: red;
+  border-radius: 50%;
+  font-size: 8px;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  top: -10px;
 }

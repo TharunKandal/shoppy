@@ -21,7 +21,7 @@
       <button class="button" (click)="increment()">+</button>
       <input class="count" [value]="count" />
       <button class="button" (click)="decrement()">-</button>
-      <button class="button cart-button">
+      <button class="button cart-button" (click)="addToCart(product)">
         <span class="material-symbols-outlined md-48 cart-icon">
           shopping_cart
         </span>
@@ -34,8 +34,23 @@
         </span>
       </button>
     </div>
-    <h3 [style.margin.px]="10">Description</h3>
+    <h3 [style.margin.px]="20" [style.font-weight]="500">Description</h3>
     <p [style.margin.px]="10">{{ product.description }}</p>
+
+    <h3 [style.margin.px]="20" [style.font-weight]="500">Similar Products</h3>
+    <div class="similar-products">
+      <div class="scroll-container">
+        <div class="product-card" *ngFor="let item of similarProducts">
+          <div class="product-card-image">
+            <img
+              [src]="item.image"
+              alt="{{ item.title }}"
+              [routerLink]="['/product', item.id]"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="loading-container" *ngIf="loading">

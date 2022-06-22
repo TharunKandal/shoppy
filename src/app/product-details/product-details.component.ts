@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -12,10 +13,12 @@ export class ProductDetailsComponent implements OnInit {
   loading: boolean = false;
   product: any;
   count: any = 1;
+  similarProducts: any = [];
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -25,16 +28,33 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
+  addToCart(product: any) {
+    this.cartService.addItem(product);
+  }
+
   getProduct(productid: string) {
     this.loading = true;
-    this.product = this.productService.getProduct(productid).subscribe({
+    this.productService.getProduct(productid).subscribe({
       next: (res) => {
         this.product = res;
+
+        this.getSimilarproducts(this.product.category);
         this.loading = false;
       },
       error: (err: any) => console.log(err),
     });
   }
+
+  getSimilarproducts(category: string) {
+    this.productService.getProductsOfCategory(category).subscribe({
+      next: (res) => {
+        this.similarProducts = res;
+        console.log(this.similarProducts);
+      },
+      error: (err: any) => console.log(err),
+    });
+  }
+
   increment() {
     this.count += 1;
     console.log(this.count);

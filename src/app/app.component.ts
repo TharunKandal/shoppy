@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
     this.getCategories();
     this.cartService.cartItems.subscribe((cartItems) => {
       this.cartItemCount = cartItems.length;
-      console.log(this.cartItemCount);
     });
   }
   getCategories() {

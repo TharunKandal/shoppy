@@ -1,48 +1,68 @@
-<div class="container" *ngIf="!loading">
-  <!-- <div class="product-image">
-      <img [src]="product.image" alt="product.title" />
-    </div>
-    <div class="product-details">
-      <span class="product-title"
-        ><h1>{{ product.title }}</h1>
-      </span>
-      <div class="rating" [style.width.px]="120">
-        <div [style.width.%]="100 - 0.25 * product.rating">
-          <span class="material-symbols-outlined md-48"> star </span>
-          <span class="material-symbols-outlined md-48"> star </span>
-          <span class="material-symbols-outlined md-48"> star </span>
-          <span class="material-symbols-outlined md-48"> star </span>
-          <span class="material-symbols-outlined md-48"> star </span>
+<div class="container" *ngIf="cartItems.length">
+  <div class="cart-section">
+    <div class="product-card" *ngFor="let item of cartItems">
+      <div class="product-card-image">
+        <img [src]="item.image" alt="{{ item.title }}" />
+      </div>
+      <div class="product-card-details">
+        <h3 class="product-title">{{ item.title }}</h3>
+        <div class="rating" [style.width.px]="120">
+          <div>
+            <span class="material-symbols-outlined md-48"> star </span>
+            <span class="material-symbols-outlined md-48"> star </span>
+            <span class="material-symbols-outlined md-48"> star </span>
+            <span class="material-symbols-outlined md-48"> star </span>
+            <span class="material-symbols-outlined md-48"> star </span>
+            <span>({{ item.rating.count }})</span>
+          </div>
         </div>
+        <p class="details">
+          Price : <span class="price">$ {{ item.price }}</span>
+        </p>
+        <p class="details">Quantity : {{ item.quantity }}</p>
       </div>
-      <h2 class="price">$ {{ product.price }}</h2>
-      <div class="count-container">
-        <button class="button" (click)="increment()">+</button>
-        <input class="count" [value]="count" />
-        <button class="button" (click)="decrement()">-</button>
-        <button class="button cart-button">
-          <span class="material-symbols-outlined md-48 cart-icon">
-            shopping_cart
-          </span>
-        </button>
-  
-        <button class="button checkout-button" [routerLink]="['/cart']">
-          Checkout
-          <span class="material-symbols-outlined md-48 checkout-icon">
-            arrow_forward
-          </span>
-        </button>
+      <div class="product-actions" (click)="removeItem(item)">
+        <span class="material-symbols-outlined md-48 cart-icon"> delete </span>
       </div>
-      <h3 [style.margin.px]="10">Description</h3>
-      <p [style.margin.px]="10">{{ product.description }}</p>
-    </div> -->
+    </div>
+  </div>
+  <div class="checkout-section">
+    <div class="apply-promo">
+      <h4>Apply Promo Code</h4>
+      <input class="count" [value]="" />
+      <button class="button">Apply</button>
+    </div>
+    <div class="billing-details">
+      <div>
+        Subtotal
+        <p>${{ subTotal }}</p>
+      </div>
+      <div>
+        Shipping Charges
+        <p>${{ subTotal === 0 ? 0 : 20 }}</p>
+      </div>
+      <hr />
+      <div>
+        <h2>
+          Grand Total
+          <p>(Prices include GST)</p>
+        </h2>
+        {{ subTotal + (subTotal === 0 ? 0 : 20) | currency: "4.2" }}
+      </div>
+      <button class="button checkout-button">Checkout</button>
+    </div>
+  </div>
 </div>
-<div class="loading-container" *ngIf="loading">
-  <h4>why so serious ?</h4>
-  <div class="lds-ellipsis">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+<div class="Empty-cart" *ngIf="!cartItems.length">
+  <img
+    src="./../../assets/emptyCart.svg"
+    alt="Your Cart is Empty"
+    [height]="300"
+  />
+  <div class="empty-message">
+    <h3>Your cart is empty</h3>
+    <button class="button" [routerLink]="['/products']">
+      Lets go shopping
+    </button>
   </div>
 </div>
