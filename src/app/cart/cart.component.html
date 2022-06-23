@@ -21,8 +21,13 @@
         </p>
         <p class="details">Quantity : {{ item.quantity }}</p>
       </div>
-      <div class="product-actions" (click)="removeItem(item)">
-        <span class="material-symbols-outlined md-48 cart-icon"> delete </span>
+      <div class="product-actions">
+        <span
+          class="material-symbols-outlined md-48 cart-icon"
+          (click)="removeItem(item)"
+        >
+          delete
+        </span>
       </div>
     </div>
   </div>
