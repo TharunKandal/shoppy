@@ -10,8 +10,8 @@
     />
     <div class="navLinks">
       <a
-        [routerLink]="['/products', category]"
-        *ngFor="let category of categories"
+        *ngFor="let category of categories; let i = index"
+        [routerLink]="['/products', category | urlTransform, i]"
         >{{ category }}</a
       >
     </div>

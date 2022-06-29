@@ -12,19 +12,22 @@ export class ProductsComponent implements OnInit {
   products: any;
   category: any;
   loading: boolean = false;
+  categoryId: any;
+  categories: any;
 
   constructor(
     private productService: ProductService,
     private cartService: CartService,
-
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.getCategories();
     this.route.params.subscribe((params) => {
       this.category = params['category'];
+      this.categoryId = params['id'];
       this.category
-        ? this.getProductsOfCategory(this.category)
+        ? this.getProductsOfCategory(this.categoryId)
         : this.getProducts();
     });
   }
@@ -40,10 +43,10 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  getProductsOfCategory(category: string) {
+  getProductsOfCategory(id: string) {
     this.loading = true;
     this.products = this.productService
-      .getProductsOfCategory(category)
+      .getProductsOfCategory(this.categories[id])
       .subscribe({
         next: (res) => {
           this.products = res;
@@ -51,6 +54,14 @@ export class ProductsComponent implements OnInit {
         },
         error: (err: any) => console.log(err),
       });
+  }
+  getCategories() {
+    this.categories = this.productService.getCategories().subscribe({
+      next: (res) => {
+        this.categories = res;
+      },
+      error: (err: any) => console.log(err),
+    });
   }
 
   addToCart(product: any) {

@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
+import { UrlTransform } from './pipes/transform-url.pipe';
 
 @NgModule({
   declarations: [
@@ -14,8 +15,10 @@ import { CartComponent } from './cart/cart.component';
     ProductsComponent,
     ProductDetailsComponent,
     CartComponent,
+    UrlTransform,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  exports: [UrlTransform],
   providers: [],
   bootstrap: [AppComponent],
 })

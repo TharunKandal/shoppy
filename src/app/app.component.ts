@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from './services/cart.service';
 import { ProductService } from './services/product.service';
+import { UrlTransform } from './pipes/transform-url.pipe';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  providers: [UrlTransform],
 })
 export class AppComponent implements OnInit {
   products: any;
@@ -12,7 +14,8 @@ export class AppComponent implements OnInit {
   cartItemCount: any;
   constructor(
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private urlTransform: UrlTransform
   ) {}
   ngOnInit() {
     this.getCategories();
@@ -24,7 +27,6 @@ export class AppComponent implements OnInit {
     this.categories = this.productService.getCategories().subscribe({
       next: (res) => {
         this.categories = res;
-        console.log(this.categories, 'Categories');
       },
       error: (err: any) => console.log(err),
     });
